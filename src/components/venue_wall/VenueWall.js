@@ -119,8 +119,9 @@ export const VenueWall = () => {
                         >
                         <div className="cool_mode_descript">Toggle Cool Mode</div>
                         </OverlayTrigger>
-                        <Form.Check 
-                            type="switch"
+                        <Form.Switch
+                            type='switch'
+                            bsSwitchPrefix='form-check'
                             id="custom-switch"
                             onChange={onSwitchAction}
                         />

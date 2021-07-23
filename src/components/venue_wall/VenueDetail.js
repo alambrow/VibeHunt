@@ -63,8 +63,7 @@ export const VenueDetail = ({venue}) => {
             <div className="venue_open">Vibe level: {localVenueState.intensity_txt}</div>
             <ProgressBar animated now={intensity_display} variant="warning" />
             <div className="venue_buttons_flex">
-                <div className="favorite_button">hii</div>
-                <div className="share_dropdown">hiii</div>
+
             </div>
             <Accordion defaultActiveKey="0">
                     <Card>
