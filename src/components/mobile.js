@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
+import { Route } from 'react-router-dom';
+import { NavBar } from './nav/NavBar';
+import { VenueWall } from './venue_wall/VenueWall';
 
 export const Mobile = () => {
     return (
-        <div className="mobile_all">
-            <p>This is mobile view</p>
-        </div>
+    <>
+        <NavBar />
+        <Route exact path="/">
+            <VenueWall />
+        </Route>
+    </>
     )
 }

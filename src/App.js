@@ -1,12 +1,13 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import './App.css';
-
 import { Mobile } from './components/mobile';
 import { Tablet } from './components/tablet';
 import { Desktop } from './components/desktop';
 import { Laptop } from './components/laptop';
 import { BigScreen } from './components/big-screen';
+import { VenueDetailProvider } from './components/venue_wall/VenueDetailProvider';
+import { VenueInfoProvider } from './venue_info/VenueInfoProvider';
 
 function App() {
 
@@ -32,13 +33,17 @@ function App() {
 
   return (
     <div className="App">
-      {isMobileDevice && <Mobile />}
-      {isTabletDevice && <>
+      <VenueDetailProvider>
+        <VenueInfoProvider>
+          {isMobileDevice && <Mobile />}
+          {isTabletDevice && <>
           <Tablet />
           {isDesktop && <Desktop />}
           {isLaptop && <Laptop />}
           {isBigScreen && <BigScreen />}
         </>}
+        </VenueInfoProvider>
+      </VenueDetailProvider>
     </div>
   );
 }
