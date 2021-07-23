@@ -12,13 +12,13 @@ export const VenueDetail = ({venue}) => {
     const [intensity_display, setIntensity_display] = useState([])
     const [venAdd, setVenAdd] = useState([])
     const [positObj, setPositObj] = useState({})
-
+    // sends GET fetch call to BestTime API to get current data re busyness
     useEffect(() => {
         getVenueInfo(venue.venId).then((data) => {
             setLocalVenueState(data.analysis.hour_analysis)
         })
     }, [venue])
-
+    // converts data busy scale 2 through -2 to number between 5 and 100 for progress bar display
     useEffect(() => {
         const intensity = parseInt(localVenueState.intensity_nr)
         if (intensity === 2) {
@@ -36,11 +36,13 @@ export const VenueDetail = ({venue}) => {
         }
     }, [localVenueState])
     
+    // splits venue address to filter out the state and zip details
     useEffect(() => {
         const [venAddress,] = venue.address.split(",")
         setVenAdd(venAddress)
     }, [venue])
 
+     // sets coordinates for Google Maps plug-in
     useEffect(() => {
         let thisLocation = {
             lat: venue.lat,
@@ -49,6 +51,7 @@ export const VenueDetail = ({venue}) => {
         setPositObj(thisLocation)
     }, [venue])
 
+    // calls Google Map render
     const renderMap = (positObj) => {
         return (
             <MyMapComponent marker={positObj} key={new Date().getTime()} />
