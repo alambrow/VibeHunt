@@ -14,10 +14,12 @@ export const VenueWall = () => {
     const [ filteredVenueDetail, setFilteredVenueDetail] = useState([])
     const [ isSwitchOn, setIsSwitchOn ] = useState(false);
    
+    // GETs venue details from JSON server
     useEffect(() => {
         getVenueDetail()
     }, [])
 
+    // Sends GET requests to BestTime API to get live data about venue busyness
     useEffect(() => {
         let promises = []
         for (let i = 0; i < venueDetail.length; i++) {
@@ -55,7 +57,7 @@ export const VenueWall = () => {
             }
         }
         setFilteredVenueIds(localArray)
-    }, [remoteVenueInfo])
+    }, [remoteVenueInfo, isSwitchOn])
 
     useEffect(() => {
         let localArray = []
@@ -73,7 +75,7 @@ export const VenueWall = () => {
         } else {
             setFilteredVenueDetail(localArray)
         }
-    }, [filteredVenueIds])
+    }, [filteredVenueIds, searchTerms])
   
     const onSwitchAction = () => {
         if (isSwitchOn === false) {
