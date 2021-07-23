@@ -16,13 +16,16 @@
 
 .cool_mode_descript {
     color: lavenderblush;
-    margin-right: .5rem;
     margin-left: .5rem;
+    margin-right: .2rem;
+    margin-top: .5rem;
+    font-size: .85rem;;
 }
 
 .toggle__flex {
     display: flex;
-    flex-flow: row-reverse;
+    flex-flow: row;
+    margin: 0rem .5rem;
 }
 
 .search_box {

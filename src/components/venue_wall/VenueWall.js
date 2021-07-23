@@ -3,6 +3,7 @@ import { VenueDetailContext } from './VenueDetailProvider';
 import { VenueInfoContext } from '../../venue_info/VenueInfoProvider';
 import { VenueDetail } from './VenueDetail';
 import { Form, OverlayTrigger, Tooltip, Col } from 'react-bootstrap';
+import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import './venue_wall.css';
 
 export const VenueWall = () => {
@@ -109,11 +110,13 @@ export const VenueWall = () => {
                         >
                         <div className="cool_mode_descript">Toggle Cool Mode</div>
                         </OverlayTrigger>
-                        <Form.Switch
-                            type='switch'
-                            bsSwitchPrefix='form-check'
-                            id="custom-switch"
+                        <BootstrapSwitchButton 
+                            label="cool mode switch"
                             onChange={onSwitchAction}
+                            onstyle="primary"
+                            offstyle="secondary"
+                            width={50}
+                            height={30}
                         />
                     </Col>
                     <Col>
