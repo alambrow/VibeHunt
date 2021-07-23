@@ -1,17 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Form, OverlayTrigger, Tooltip, Col } from 'react-bootstrap';
 import { VenueDetailContext } from './VenueDetailProvider';
 import { VenueInfoContext } from '../../venue_info/VenueInfoProvider';
 import { VenueDetail } from './VenueDetail';
+import { Form, OverlayTrigger, Tooltip, Col } from 'react-bootstrap';
+import FormCheck from 'react-bootstrap/FormCheck';
 import './venue_wall.css';
 
 export const VenueWall = () => {
-    const { venueDetail, getVenueDetail, searchTerms } = useContext(VenueDetailContext)
+    const { venueDetail, getVenueDetail, searchTerms, setSearchTerms } = useContext(VenueDetailContext)
     const { getVenueInfo } = useContext(VenueInfoContext)
     const [ remoteVenueInfo, setRemoteVenueInfo ] = useState([])
     const [ filteredVenueIds, setFilteredVenueIds ] = useState([])
     const [ filteredVenueDetail, setFilteredVenueDetail] = useState([])
-    const [ isSwitchOn ] = useState(false);
+    const [ isSwitchOn, setIsSwitchOn ] = useState(false);
    
     useEffect(() => {
         getVenueDetail()
@@ -74,8 +75,68 @@ export const VenueWall = () => {
         }
     }, [filteredVenueIds])
   
+    const onSwitchAction = () => {
+        if (isSwitchOn === false) {
+            setIsSwitchOn(true)
+        } else {
+            setIsSwitchOn(false)
+        }
+    }
+
+    useEffect(() => {
+        let localArray = []
+        for (let i = 0; i < filteredVenueIds.length; i++) {
+            for (let n = 0; n < venueDetail.length; n++) {
+                if (filteredVenueIds[i] === venueDetail[n].venId) {
+                    localArray.push(venueDetail[n])
+                }
+            }
+        }
+        if (searchTerms !== "") {
+            const newSearchTerms = searchTerms.toLowerCase()
+            const subset = localArray.filter(venue => venue.name.toLowerCase().includes(newSearchTerms))
+            setFilteredVenueDetail(subset)
+        } else {
+            setFilteredVenueDetail(localArray)
+        }
+    }, [filteredVenueIds, searchTerms])
+
+    const renderTip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+            Cool mode pushes quieter bars to the top of the list
+        </Tooltip>
+    )
+
     return (
         <>
+            <Form className={isSwitchOn ? "vibe__toggle__cool" : "vibe__toggle"}>
+                <Form.Row className="toggle__flex__outer">
+                    <Col className="toggle__flex" xs={6}>
+                        <OverlayTrigger
+                            placement="bottom"
+                            delay={{ show: 200, hide: 200 }}
+                            overlay={renderTip}
+                        >
+                        <div className="cool_mode_descript">Toggle Cool Mode</div>
+                        </OverlayTrigger>
+                        <Form.Check 
+                            type="switch"
+                            id="custom-switch"
+                            onChange={onSwitchAction}
+                        />
+                    </Col>
+                    <Col>
+                        <Form.Control 
+                        type="search" 
+                        placeholder="Search" 
+                        className="search_box" 
+                        onKeyUp={(event) => setSearchTerms(event.target.value)}
+                        />
+                    </Col>
+                </Form.Row>
+            </Form>
+
+
             <div className={isSwitchOn ? "venues__info__cool" : "venues__info"}>
                 {   
                     filteredVenueDetail.map(venue => {

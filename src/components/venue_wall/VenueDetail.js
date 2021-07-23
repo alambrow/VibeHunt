@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import ProgressBar from 'react-bootstrap/ProgressBar';
+import { ProgressBar } from 'react-bootstrap';
+import { Accordion, Card, Modal, Button } from "react-bootstrap";
 import { VenueInfoContext } from '../../venue_info/VenueInfoProvider';
 import { MyMapComponent } from '../map/map';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./venue_wall.css";
 
 export const VenueDetail = ({venue}) => {
@@ -59,13 +61,31 @@ export const VenueDetail = ({venue}) => {
             <div className="venue_name">{venue.name}</div>
             <div className="venue_address">{venAdd}</div>
             <div className="venue_open">Vibe level: {localVenueState.intensity_txt}</div>
-                <div className="venue_vibe">
-                    <ProgressBar animated now={intensity_display} variant="warning" />
-                </div>
-                <div className="venue_buttons_flex">
-                    <div className="favorite_button">hii</div>
-                    <div className="share_dropdown">hiii</div>
-                </div>
+            <ProgressBar animated now={intensity_display} variant="warning" />
+            <div className="venue_buttons_flex">
+                <div className="favorite_button">hii</div>
+                <div className="share_dropdown">hiii</div>
+            </div>
+            <Accordion defaultActiveKey="0">
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                        What's the vibe?
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="0">
+                        <Card.Body>
+                        </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey="1">
+                        User Notes
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="1">
+                        <Card.Body>
+                        </Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                    </Accordion>
         </div>
     )
 }
