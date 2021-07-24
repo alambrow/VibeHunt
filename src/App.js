@@ -8,6 +8,7 @@ import { Laptop } from './components/laptop';
 import { BigScreen } from './components/big-screen';
 import { VenueDetailProvider } from './components/venue_wall/VenueDetailProvider';
 import { VenueInfoProvider } from './venue_info/VenueInfoProvider';
+import { CommentProvider } from './components/comments/CommentProvider';
 
 function App() {
 
@@ -35,13 +36,15 @@ function App() {
     <div className="App">
       <VenueDetailProvider>
         <VenueInfoProvider>
-          {isMobileDevice && <Mobile />}
-          {isTabletDevice && <>
-          <Tablet />
-          {isDesktop && <Desktop />}
-          {isLaptop && <Laptop />}
-          {isBigScreen && <BigScreen />}
-        </>}
+          <CommentProvider>
+            {isMobileDevice && <Mobile />}
+            {isTabletDevice && <>
+            <Tablet />
+            {isDesktop && <Desktop />}
+            {isLaptop && <Laptop />}
+            {isBigScreen && <BigScreen />}
+            </>}
+          </CommentProvider>
         </VenueInfoProvider>
       </VenueDetailProvider>
     </div>
