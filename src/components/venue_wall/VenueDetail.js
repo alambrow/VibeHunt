@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ProgressBar } from 'react-bootstrap';
-import { Accordion, Card, Modal, Button } from "react-bootstrap";
+import { Accordion, Card, Button } from "react-bootstrap";
 import { VenueInfoContext } from '../../venue_info/VenueInfoProvider';
 import { MyMapComponent } from '../map/map';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -70,35 +70,31 @@ export const VenueDetail = ({venue}) => {
 
             </div>
             <Accordion defaultActiveKey="0">
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="0">
-                        What's the vibe?
-                        </Accordion.Toggle>
-                        <Accordion.Collapse eventKey="0">
+                <Card>
+                    <Accordion.Toggle as={Card.Header} eventKey="0">
+                    What's the vibe?
+                    </Accordion.Toggle>                        <Accordion.Collapse eventKey="0">
                         <Card.Body>
                         <div className="vibe_button_flex">
                             <Button variant="warning">Littt</Button>{' '}
-                            <Button className="hoppin_button">Hoppin'</Button>{' '}
                             <Button className="vibey_button">Vibey</Button>{' '}
+                            <Button variant="primary">Chill</Button>{' '}
+                            <Button className="meh_button">Mehh</Button>{' '}
                         </div>
-                        <div className="vibe_button_flex_lower">
-                            <Button variant="info">Chill</Button>{' '}
-                            <Button variant="secondary">Mehhh </Button>{' '}
-                            <Button variant="dark">Dead</Button>{' '}
-                        </div>
-                        </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey="1">
-                        User Notes
+                    </Card.Body>
+                    </Accordion.Collapse>
+                </Card>
+                <Card>
+                    <Accordion.Toggle as={Card.Header} eventKey="1">
+                        Current Vibe
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
+
                         </Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
-                    </Accordion>
+                    </Accordion.Collapse>
+                </Card>
+            </Accordion>
         </div>
     )
 }

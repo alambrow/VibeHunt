@@ -152,23 +152,18 @@
     justify-content: flex-end;
 }
 
-.hoppin_button {
+.vibey_button {
     background-color: rgb(128, 202, 169);
     color: rgb(45, 51, 59);
+    font-weight: 475;
 }
 
-.vibey_button {
+.meh_button {
     background-color: rgb(6, 11, 69);
     color: lavenderblush;
 }
 
 .vibe_button_flex {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-}
-
-.vibe_button_flex_lower {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
