@@ -17,8 +17,7 @@ export const NavBar = () => {
                             <Dropdown.Item className="dropdown-item" href="/">Home</Dropdown.Item>
                             <Dropdown.Divider />
                             <Dropdown.Item className="dropdown-item" href="/favorites">
-                                Favorites 
-                                <Badge variant="secondary">x</Badge>
+                                Favorites
                             </Dropdown.Item>
                         </Dropdown.Menu>
                 </Dropdown>

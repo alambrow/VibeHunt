@@ -51,7 +51,7 @@ export const VenueDetail = ({venue}) => {
         setPositObj(thisLocation)
     }, [venue])
 
-    // calls Google Map render
+    // renders Google Map centered on coordinates of venue
     const renderMap = (positObj) => {
         return (
             <MyMapComponent marker={positObj} key={new Date().getTime()} />
@@ -65,6 +65,7 @@ export const VenueDetail = ({venue}) => {
             <div className="venue_address">{venAdd}</div>
             <div className="venue_open">Vibe level: {localVenueState.intensity_txt}</div>
             <ProgressBar animated now={intensity_display} variant="warning" />
+            <br/>
             <div className="venue_buttons_flex">
 
             </div>
@@ -75,6 +76,16 @@ export const VenueDetail = ({venue}) => {
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
                         <Card.Body>
+                        <div className="vibe_button_flex">
+                            <Button variant="warning">Littt</Button>{' '}
+                            <Button className="hoppin_button">Hoppin'</Button>{' '}
+                            <Button className="vibey_button">Vibey</Button>{' '}
+                        </div>
+                        <div className="vibe_button_flex_lower">
+                            <Button variant="info">Chill</Button>{' '}
+                            <Button variant="secondary">Mehhh </Button>{' '}
+                            <Button variant="dark">Dead</Button>{' '}
+                        </div>
                         </Card.Body>
                         </Accordion.Collapse>
                     </Card>
