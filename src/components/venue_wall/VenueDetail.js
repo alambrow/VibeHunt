@@ -13,6 +13,10 @@ export const VenueDetail = ({venue}) => {
     const [intensity_display, setIntensity_display] = useState([])
     const [venAdd, setVenAdd] = useState([])
     const [positObj, setPositObj] = useState({})
+    const [litttPercent, setLitttPercent] = useState([])
+    const [vibeyPercent, setVibeyPercent] = useState([])
+    const [chillPercent, setChillPercent] = useState([])
+    const [mehPercent, setMehPercent] = useState([])
     const { comments, addComment, getComments } = useContext(CommentContext)
 
     // sends GET fetch call to BestTime API to get current data re busyness
@@ -74,14 +78,12 @@ export const VenueDetail = ({venue}) => {
         })
     }
 
-
-
-    const displayComments = (venId) => {
+    useEffect(() => {
         let localComments = []
         let twoHourMarker = (Date.now() - 7200)
 
         for (let i = 0; i < comments.length; i++) {
-            if (comments[i].venueId === venId && comments[i].timestamp >= twoHourMarker) {
+            if (comments[i].venueId === venue.id && comments[i].timestamp >= twoHourMarker) {
                 localComments.push(comments[i])
             }
         }
@@ -102,21 +104,11 @@ export const VenueDetail = ({venue}) => {
         }
 
         let sum_total = (litttComments + vibeyComments + chillComments + mehComments)
-        let litttPercent = (litttComments * 100) / sum_total
-        let vibeyPercent = (vibeyComments * 100) / sum_total
-        let chillPercent = (chillComments * 100) / sum_total
-        let mehPercent = (mehComments * 100) / sum_total
-        
-    return (
-        <> 
-            <ProgressBar animated variant="warning" now={Math.ceil(litttPercent)} />
-            <ProgressBar animated variant="success" now={Math.ceil(vibeyPercent)} />
-            <ProgressBar animated variant="primary" now={Math.ceil(chillPercent)} />
-            <ProgressBar animated variant="dark" now={Math.ceil(mehPercent)} />
-        </>
-    )
-
-    }
+        setLitttPercent(litttComments)
+        setVibeyPercent(vibeyComments)
+        setChillPercent(chillComments)
+        setMehPercent(mehComments)
+    }, [venue, comments])
 
     return (
         <div className="venue_card">
@@ -162,7 +154,10 @@ export const VenueDetail = ({venue}) => {
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
-                        {displayComments(venue.id)}
+                            Littt<ProgressBar variant="warning" now={Math.ceil(litttPercent)} />
+                            Vibey<ProgressBar variant="success" now={Math.ceil(vibeyPercent)} />
+                            Chill<ProgressBar variant="primary" now={Math.ceil(chillPercent)} />
+                            Meh<ProgressBar variant="dark" now={Math.ceil(mehPercent)} />
                         </Card.Body>
                     </Accordion.Collapse>
                 </Card>
