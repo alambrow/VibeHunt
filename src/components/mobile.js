@@ -8,7 +8,7 @@ export const Mobile = () => {
     <>
         <NavBar />
         <Route exact path="/">
-            
+            <VenueWall neighborhood="All"/>
         </Route>
         <Route exact path="/nashville/midtown">
             <VenueWall neighborhood="Midtown" />

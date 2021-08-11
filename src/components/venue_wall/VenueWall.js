@@ -7,7 +7,7 @@ import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import './venue_wall.css';
 
 export const VenueWall = (props) => {
-    const { venueDetail, getVenueDetail, searchTerms, setSearchTerms } = useContext(VenueDetailContext)
+    const { venueDetail, getVenueDetail, searchTerms, setSearchTerms, getAllVenueDetail } = useContext(VenueDetailContext)
     const { getVenueInfo } = useContext(VenueInfoContext)
     const [ remoteVenueInfo, setRemoteVenueInfo ] = useState([])
     const [ filteredVenueIds, setFilteredVenueIds ] = useState([])
@@ -16,7 +16,12 @@ export const VenueWall = (props) => {
    
     // GETs venue details from JSON server
     useEffect(() => {
-        getVenueDetail(props.neighborhood)
+        if (props.neighborhood != "All") {
+            getVenueDetail(props.neighborhood)
+        } else {
+            getAllVenueDetail()
+        }
+        
     }, [])
 
     // Sends GET requests to BestTime API to get live data about venue busyness
