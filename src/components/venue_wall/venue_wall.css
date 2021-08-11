@@ -169,3 +169,10 @@
     flex-flow: row wrap;
     justify-content: space-around;
 }
+
+.infobar__bottom{
+    background-color: darkgray;
+    color: lavenderblush;
+    text-align: right;
+    padding: .2rem 1rem;
+}

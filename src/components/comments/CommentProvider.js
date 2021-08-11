@@ -22,9 +22,15 @@ export const CommentProvider = (props) => {
         .then (getComments)
     }
 
+    const getCommentsByVenueId = venId => {
+        return fetch(`http://127.0.0.1:8000/comments?venueId=${venId}`)
+        .then(res => res.json())
+        .then(setComments)
+    }
+
     return (
         <CommentContext.Provider value={{
-            comments, getComments, addComment
+            comments, getComments, addComment, getCommentsByVenueId
         }}>
             {props.children}
         </CommentContext.Provider>

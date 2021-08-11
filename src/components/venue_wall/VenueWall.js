@@ -16,7 +16,7 @@ export const VenueWall = (props) => {
    
     // GETs venue details from JSON server
     useEffect(() => {
-        if (props.neighborhood != "All") {
+        if (props.neighborhood !== "All") {
             getVenueDetail(props.neighborhood)
         } else {
             getAllVenueDetail()
@@ -145,6 +145,9 @@ export const VenueWall = (props) => {
                         return <VenueDetail venue={venue} />
                     })
                 }
+            </div>
+            <div className="infobar__bottom">
+                A Website by Alex Lambrow
             </div>
         </>
     )

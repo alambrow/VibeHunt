@@ -1,17 +1,18 @@
-import { Dropdown, Badge } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import VibeHuntBanner from '../images/VibeHunt.jpg';
+import { HiMenu } from 'react-icons/hi';
 import './navbar.css';
 
 export const NavBar = () => {
     return (
         <nav className="nav_bar">
             <div className="vibehunt_title">
-                <img src={VibeHuntBanner} width="260rem" height="60rem" />
+                <img src={VibeHuntBanner} alt="Vibehunt Banner" width="260rem" height="60rem" />
             </div>
             <div className="dropdown_holder">
                 <Dropdown id="vibehunt_dropdown">
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            Menu
+                            <HiMenu />
                     </Dropdown.Toggle>
                         <Dropdown.Menu id="dropdown-background">
                             <Dropdown.Item className="dropdown-item" href="/">Home</Dropdown.Item>

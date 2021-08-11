@@ -3,7 +3,6 @@ import { ProgressBar } from 'react-bootstrap';
 import { Accordion, Card, Button } from "react-bootstrap";
 import { VenueInfoContext } from '../../venue_info/VenueInfoProvider';
 import { CommentContext } from '../comments/CommentProvider';
-import { UserDataContext } from '../user_data/UserDataProvider';
 import { MyMapComponent } from '../map/map';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./venue_wall.css";
@@ -18,8 +17,8 @@ export const VenueDetail = ({venue}) => {
     const [vibeyPercent, setVibeyPercent] = useState(0)
     const [chillPercent, setChillPercent] = useState(0)
     const [mehPercent, setMehPercent] = useState(0)
-    const { comments, addComment, getComments } = useContext(CommentContext)
-    const { userData, getUserData } = useContext(UserDataContext)
+    const { comments, addComment, getCommentsByVenueId } = useContext(CommentContext)
+
 
     // sends GET fetch call to BestTime API to get current data re busyness
     useEffect(() => {
@@ -29,12 +28,8 @@ export const VenueDetail = ({venue}) => {
     }, [venue])
 
     useEffect(() => {
-        getComments()
+        getCommentsByVenueId(venue.id)
     }, [venue])
-
-    useEffect(() => {
-        getUserData()
-    }, [])
 
     // converts data busy scale 2 through -2 to number between 5 and 100 for progress bar display
     useEffect(() => {
@@ -75,7 +70,7 @@ export const VenueDetail = ({venue}) => {
             <MyMapComponent marker={positObj} key={new Date().getTime()} />
         )
     }
-
+    // invokes POST fetch call to Comment database
     const addCommentToDatabase = (venId, commId) => {
         addComment({
             venueId: venId,
@@ -106,7 +101,6 @@ export const VenueDetail = ({venue}) => {
                 mehComments++
             }
         }
-        
         setLitttPercent(litttComments)
         setVibeyPercent(vibeyComments)
         setChillPercent(chillComments)
@@ -114,52 +108,14 @@ export const VenueDetail = ({venue}) => {
     }, [venue, comments])
 
     const showCurrentVibe = () => {
-        if (litttPercent > vibeyPercent && litttPercent > chillPercent && litttPercent > mehPercent) {
-            return (
-                <>
+        return (
+            <>
                 Littt ({litttPercent}) <ProgressBar animated variant="warning" now={litttPercent} />
                 Vibey ({vibeyPercent}) <ProgressBar animated variant="success" now={vibeyPercent} />
                 Chill ({chillPercent})<ProgressBar animated variant="primary" now={chillPercent} />
                 Meh ({mehPercent}) <ProgressBar animated variant="dark" now={mehPercent} />
-                </>
-            )
-        } else if (vibeyPercent > litttPercent && vibeyPercent > chillPercent && vibeyPercent > mehPercent) {
-            return (
-                <>
-                Vibey ({vibeyPercent}) <ProgressBar animated variant="success" now={vibeyPercent} />
-                Littt ({litttPercent}) <ProgressBar animated variant="warning" now={litttPercent} />
-                Chill ({chillPercent})<ProgressBar animated variant="primary" now={chillPercent} />
-                Meh ({mehPercent}) <ProgressBar animated variant="dark" now={mehPercent} />
-                </>
-            )
-        } else if (chillPercent > litttPercent && chillPercent > vibeyPercent && chillPercent > mehPercent) {
-            return (
-                <>
-                Chill ({chillPercent})<ProgressBar animated variant="primary" now={chillPercent} />
-                Vibey ({vibeyPercent}) <ProgressBar animated variant="success" now={vibeyPercent} />
-                Littt ({litttPercent}) <ProgressBar animated variant="warning" now={litttPercent} />
-                Meh ({mehPercent}) <ProgressBar animated variant="dark" now={mehPercent} />
-                </>
-            )
-        } else if (mehPercent > litttPercent && mehPercent > vibeyPercent && mehPercent > chillPercent) {
-            return (
-                <>
-                Meh ({mehPercent}) <ProgressBar animated variant="dark" now={mehPercent} />
-                Vibey ({vibeyPercent}) <ProgressBar animated variant="success" now={vibeyPercent} />
-                Littt ({litttPercent}) <ProgressBar animated variant="warning" now={litttPercent} />
-                Chill ({chillPercent})<ProgressBar animated variant="primary" now={chillPercent} />
-                </>
-            )
-        } else {
-            return (
-                <>
-                Littt ({litttPercent}) <ProgressBar animated variant="warning" now={litttPercent} />
-                Vibey ({vibeyPercent}) <ProgressBar animated variant="success" now={vibeyPercent} />
-                Chill ({chillPercent})<ProgressBar animated variant="primary" now={chillPercent} />
-                Meh ({mehPercent}) <ProgressBar animated variant="dark" now={mehPercent} />
-                </>
-            )
-        }
+            </>
+        )
     }
 
     return (
