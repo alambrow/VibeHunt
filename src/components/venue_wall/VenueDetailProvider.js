@@ -1,4 +1,3 @@
-
 import React, {useState, createContext} from 'react';
 
 export const VenueDetailContext = createContext()
@@ -7,8 +6,8 @@ export const VenueDetailProvider = (props) => {
     const [venueDetail, setVenueDetail] = useState([])
     const [searchTerms, setSearchTerms] = useState("")
 
-    const getVenueDetail = () => {
-        return fetch("http://127.0.0.1:8000/venues")
+    const getVenueDetail = (neighborhood) => {
+        return fetch(`http://127.0.0.1:8000/venues?neighborhood=${neighborhood}`)
         .then(res => res.json())
         .then(data => {
             setVenueDetail(data)

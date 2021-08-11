@@ -16,9 +16,16 @@ export const NavBar = () => {
                         <Dropdown.Menu id="dropdown-background">
                             <Dropdown.Item className="dropdown-item" href="/">Home</Dropdown.Item>
                             <Dropdown.Divider />
-                            <Dropdown.Item className="dropdown-item" href="/favorites">
-                                Favorites
+                            <Dropdown.Item className="dropdown-item" href="/nashville/midtown">
+                                Midtown Nashville
                             </Dropdown.Item>
+                            <Dropdown.Item className="dropdown-item" href="/nashville/downtown">
+                                Downtown Nashville
+                            </Dropdown.Item>
+                            <Dropdown.Item className="dropdown-item" href="/nashville/east">
+                                East Nashville
+                            </Dropdown.Item>
+                            <Dropdown.Divider />
                         </Dropdown.Menu>
                 </Dropdown>
             </div>

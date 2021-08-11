@@ -6,7 +6,7 @@ import { Form, OverlayTrigger, Tooltip, Col } from 'react-bootstrap';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import './venue_wall.css';
 
-export const VenueWall = () => {
+export const VenueWall = (props) => {
     const { venueDetail, getVenueDetail, searchTerms, setSearchTerms } = useContext(VenueDetailContext)
     const { getVenueInfo } = useContext(VenueInfoContext)
     const [ remoteVenueInfo, setRemoteVenueInfo ] = useState([])
@@ -16,7 +16,7 @@ export const VenueWall = () => {
    
     // GETs venue details from JSON server
     useEffect(() => {
-        getVenueDetail()
+        getVenueDetail(props.neighborhood)
     }, [])
 
     // Sends GET requests to BestTime API to get live data about venue busyness
@@ -98,6 +98,10 @@ export const VenueWall = () => {
         </Tooltip>
     )
 
+    const showLocatInSearch = () => {
+        return `Search ${props.neighborhood}`
+    }
+ 
     return (
         <>
             <Form className={isSwitchOn ? "vibe__toggle__cool" : "vibe__toggle"}>
@@ -122,7 +126,7 @@ export const VenueWall = () => {
                     <Col>
                         <Form.Control 
                         type="search" 
-                        placeholder="Search" 
+                        placeholder={showLocatInSearch()} 
                         className="search_box" 
                         onKeyUp={(event) => setSearchTerms(event.target.value)}
                         />
@@ -130,9 +134,9 @@ export const VenueWall = () => {
                 </Form.Row>
             </Form>
             <div className={isSwitchOn ? "venues__info__cool" : "venues__info"}>
+               
                 {   
                     filteredVenueDetail.map(venue => {
-                        console.log(venue)
                         return <VenueDetail venue={venue} />
                     })
                 }
