@@ -6,13 +6,13 @@ export const CommentProvider = (props) => {
     const [comments, setComments] = useState([])
 
     const getComments = () => {
-        return fetch("http://localhost:8088/comments")
+        return fetch("http://127.0.0.1:8000/comments")
         .then(res => res.json())
         .then(setComments)
     }
 
     const addComment = commentObj => {
-        return fetch("http://localhost:8088/comments", {
+        return fetch("http://127.0.0.1:8000/comments", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
