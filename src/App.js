@@ -10,6 +10,7 @@ import { VenueDetailProvider } from './components/venue_wall/VenueDetailProvider
 import { VenueInfoProvider } from './venue_info/VenueInfoProvider';
 import { CommentProvider } from './components/comments/CommentProvider';
 import { UserDataProvider } from './components/user_data/UserDataProvider';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 

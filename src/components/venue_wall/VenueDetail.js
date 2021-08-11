@@ -80,16 +80,14 @@ export const VenueDetail = ({venue}) => {
         addComment({
             venueId: venId,
             commentId: commId,
-            timestamp: Date.now().toString()
+            timestamp: Date.now()
         })
     }
 
     useEffect(() => {
         let localComments = []
-        let twoHourMarker = (Date.now() - 7200)
-
         for (let i = 0; i < comments.length; i++) {
-            if (comments[i].venueId === venue.id && parseInt(comments[i].timestamp) >= twoHourMarker) {
+            if (comments[i].venueId.id === venue.id) {
                 localComments.push(comments[i])
             }
         }
@@ -119,31 +117,46 @@ export const VenueDetail = ({venue}) => {
         if (litttPercent > vibeyPercent && litttPercent > chillPercent && litttPercent > mehPercent) {
             return (
                 <>
-                Littt ({litttPercent}) <ProgressBar variant="warning" now={litttPercent} />
+                Littt ({litttPercent}) <ProgressBar animated variant="warning" now={litttPercent} />
+                Vibey ({vibeyPercent}) <ProgressBar animated variant="success" now={vibeyPercent} />
+                Chill ({chillPercent})<ProgressBar animated variant="primary" now={chillPercent} />
+                Meh ({mehPercent}) <ProgressBar animated variant="dark" now={mehPercent} />
                 </>
             )
         } else if (vibeyPercent > litttPercent && vibeyPercent > chillPercent && vibeyPercent > mehPercent) {
             return (
                 <>
-                Vibey ({vibeyPercent}) <ProgressBar variant="success" now={vibeyPercent} />
+                Vibey ({vibeyPercent}) <ProgressBar animated variant="success" now={vibeyPercent} />
+                Littt ({litttPercent}) <ProgressBar animated variant="warning" now={litttPercent} />
+                Chill ({chillPercent})<ProgressBar animated variant="primary" now={chillPercent} />
+                Meh ({mehPercent}) <ProgressBar animated variant="dark" now={mehPercent} />
                 </>
             )
         } else if (chillPercent > litttPercent && chillPercent > vibeyPercent && chillPercent > mehPercent) {
             return (
                 <>
-                Chill ({chillPercent})<ProgressBar variant="primary" now={chillPercent} />
+                Chill ({chillPercent})<ProgressBar animated variant="primary" now={chillPercent} />
+                Vibey ({vibeyPercent}) <ProgressBar animated variant="success" now={vibeyPercent} />
+                Littt ({litttPercent}) <ProgressBar animated variant="warning" now={litttPercent} />
+                Meh ({mehPercent}) <ProgressBar animated variant="dark" now={mehPercent} />
                 </>
             )
         } else if (mehPercent > litttPercent && mehPercent > vibeyPercent && mehPercent > chillPercent) {
             return (
                 <>
-                Meh ({mehPercent}) <ProgressBar variant="dark" now={mehPercent} />
+                Meh ({mehPercent}) <ProgressBar animated variant="dark" now={mehPercent} />
+                Vibey ({vibeyPercent}) <ProgressBar animated variant="success" now={vibeyPercent} />
+                Littt ({litttPercent}) <ProgressBar animated variant="warning" now={litttPercent} />
+                Chill ({chillPercent})<ProgressBar animated variant="primary" now={chillPercent} />
                 </>
             )
         } else {
             return (
                 <>
-                <div className="venue__review">No current responses</div>
+                Littt ({litttPercent}) <ProgressBar animated variant="warning" now={litttPercent} />
+                Vibey ({vibeyPercent}) <ProgressBar animated variant="success" now={vibeyPercent} />
+                Chill ({chillPercent})<ProgressBar animated variant="primary" now={chillPercent} />
+                Meh ({mehPercent}) <ProgressBar animated variant="dark" now={mehPercent} />
                 </>
             )
         }
