@@ -9,7 +9,7 @@ export const MyMapComponent = compose(
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyDPylV5jpvE-KR6gSprY04JvFglLMuDnME&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ height: `18rem`, width: `19.2rem` }} />,
-    mapElement: <div style={{ height: `100%` }} />
+    mapElement: <div style={{ height: `100%` }} />,
   }),
   withScriptjs,
   withGoogleMap
@@ -17,6 +17,6 @@ export const MyMapComponent = compose(
   <GoogleMap 
     defaultZoom={18}
     defaultCenter={ props.marker }
-
+    disableDefaultUI={true}
   />
 ));

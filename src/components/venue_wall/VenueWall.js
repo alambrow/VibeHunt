@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, Link } from 'react';
 import { VenueDetailContext } from './VenueDetailProvider';
 import { VenueInfoContext } from '../../venue_info/VenueInfoProvider';
 import { VenueDetail } from './VenueDetail';
@@ -147,7 +147,8 @@ export const VenueWall = (props) => {
                 }
             </div>
             <div className="infobar__bottom">
-                A Website by Alex Lambrow
+                A full-stack web app by
+                <a className="personal_website_link" href="https://www.alexanderlambrow.com">Alex Lambrow</a>
             </div>
         </>
     )
