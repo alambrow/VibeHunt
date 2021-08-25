@@ -7,7 +7,7 @@ export const VenueDetailProvider = (props) => {
     const [searchTerms, setSearchTerms] = useState("")
 
     const getVenueDetail = (neighborhood) => {
-        return fetch(`http://127.0.0.1:8000/venues?neighborhood=${neighborhood}`)
+        return fetch(`https://vibehunt.herokuapp.com/venues?neighborhood=${neighborhood}`)
         .then(res => res.json())
         .then(data => {
             setVenueDetail(data)
@@ -15,7 +15,7 @@ export const VenueDetailProvider = (props) => {
     }
 
     const getAllVenueDetail = () => {
-        return fetch(`http://127.0.0.1:8000/venues`)
+        return fetch(`https://vibehunt.herokuapp.com/venues`)
         .then(res => res.json())
         .then(data => {
             setVenueDetail(data)
@@ -23,7 +23,7 @@ export const VenueDetailProvider = (props) => {
     }
 
     const getVenueDetailById = venueId => {
-        return fetch(`http://127.0.0.1:8000/venues/${venueId}`)
+        return fetch(`https://vibehunt.herokuapp.com/venues/${venueId}`)
         .then(res => res.json())
     }
 
