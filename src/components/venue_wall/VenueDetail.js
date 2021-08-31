@@ -75,7 +75,7 @@ export const VenueDetail = ({venue}) => {
         addComment({
             venueId: venId,
             commentId: commId,
-            timestamp: Date.now()
+            timestamp: Math.floor(Date.now() / 1000 )
         })
     }
 
@@ -164,10 +164,6 @@ export const VenueDetail = ({venue}) => {
                         <Accordion.Collapse eventKey="1">
                         <Card.Body>
                             {showCurrentVibe()}
-                            
-                            
-                            
-                            
                         </Card.Body>
                     </Accordion.Collapse>
                 </Card>
