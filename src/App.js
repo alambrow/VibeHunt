@@ -11,6 +11,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
+  var express = require('express');
+  var cors = require('cors');
+  var app = express();
+
+  app.use(cors());
+
   const isMobileDevice = useMediaQuery({
     query: "(min-device-width: 320px)",
   });
