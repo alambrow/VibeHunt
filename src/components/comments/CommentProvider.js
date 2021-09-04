@@ -6,13 +6,14 @@ export const CommentProvider = (props) => {
     const [comments, setComments] = useState([])
 
     const getComments = () => {
-        return fetch("https://vibehunt.herokuapp.com/comments")
+        return fetch("https://vibehunt.herokuapp.com/comments", {mode: 'no-cors'})
         .then(res => res.json())
         .then(setComments)
     }
 
     const addComment = commentObj => {
         return fetch("https://vibehunt.herokuapp.com/comments", {
+            mode: 'no-cors',
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -23,7 +24,7 @@ export const CommentProvider = (props) => {
     }
 
     const getCommentsByVenueId = venId => {
-        return fetch(`https://vibehunt.herokuapp.com/comments?venueId=${venId}`)
+        return fetch(`https://vibehunt.herokuapp.com/comments?venueId=${venId}`, {mode: 'no-cors'})
         .then(res => res.json())
         .then(setComments)
     }
