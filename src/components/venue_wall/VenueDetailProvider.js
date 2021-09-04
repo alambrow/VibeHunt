@@ -7,7 +7,7 @@ export const VenueDetailProvider = (props) => {
     const [searchTerms, setSearchTerms] = useState("")
 
     const getVenueDetail = (neighborhood) => {
-        return fetch(`https://vibehunt.herokuapp.com/venues?neighborhood=${neighborhood}, {mode: 'no-cors'}`)
+        return fetch(`https://vibehunt.herokuapp.com/venues?neighborhood=${neighborhood}`)
         .then(res => res.json())
         .then(data => {
             setVenueDetail(data)
@@ -15,7 +15,7 @@ export const VenueDetailProvider = (props) => {
     }
 
     const getAllVenueDetail = () => {
-        return fetch(`https://vibehunt.herokuapp.com/venues`, {mode: 'no-cors'})
+        return fetch(`https://vibehunt.herokuapp.com/venues`)
         .then(res => res.json())
         .then(data => {
             setVenueDetail(data)
@@ -23,7 +23,7 @@ export const VenueDetailProvider = (props) => {
     }
 
     const getVenueDetailById = venueId => {
-        return fetch(`https://vibehunt.herokuapp.com/venues/${venueId}, {mode: 'no-cors'}`)
+        return fetch(`https://vibehunt.herokuapp.com/venues/${venueId}`)
         .then(res => res.json())
     }
 
