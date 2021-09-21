@@ -13,7 +13,6 @@ export const CommentProvider = (props) => {
 
     const addComment = commentObj => {
         return fetch("https://vibehunt.herokuapp.com/comments", {
-            mode: 'no-cors',
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

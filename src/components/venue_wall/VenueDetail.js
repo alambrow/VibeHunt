@@ -75,7 +75,7 @@ export const VenueDetail = ({venue}) => {
         addComment({
             venueId: venId,
             commentId: commId,
-            timestamp: Math.floor(Date.now() / 1000 )
+            timestamp: 1 + comments.length
         })
     }
 
